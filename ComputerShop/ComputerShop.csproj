@@ -33,7 +33,20 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -43,11 +56,45 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Migrations\201703121813110_initialDatabase.cs" />
+    <Compile Include="Migrations\201703121813110_initialDatabase.Designer.cs">
+      <DependentUpon>201703121813110_initialDatabase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703121859419_ProductsJsonString.cs" />
+    <Compile Include="Migrations\201703121859419_ProductsJsonString.Designer.cs">
+      <DependentUpon>201703121859419_ProductsJsonString.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703121919573_shopIncome.cs" />
+    <Compile Include="Migrations\201703121919573_shopIncome.Designer.cs">
+      <DependentUpon>201703121919573_shopIncome.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Model\ComputerShopDbContext.cs" />
+    <Compile Include="Model\Finance.cs" />
+    <Compile Include="Model\Order.cs" />
+    <Compile Include="Model\Item.cs" />
+    <Compile Include="Model\Product.cs" />
+    <Compile Include="Model\SuplierProducts.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Controller\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201703121813110_initialDatabase.resx">
+      <DependentUpon>201703121813110_initialDatabase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703121859419_ProductsJsonString.resx">
+      <DependentUpon>201703121859419_ProductsJsonString.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703121919573_shopIncome.resx">
+      <DependentUpon>201703121919573_shopIncome.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

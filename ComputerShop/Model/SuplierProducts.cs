@@ -3,14 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ComputerShop.Model;
 
-namespace ComputerShop
+namespace ComputerShop.Model
 {
-    class Program
+    class SuplierProducts
     {
-        static void Main(string[] args)
+        IEnumerable<Product> products;
+
+        public SuplierProducts()
         {
+
         }
     }
 }
