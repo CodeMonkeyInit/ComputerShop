@@ -8,7 +8,7 @@ namespace ComputerShop.Model
 {
     class SuplierProducts
     {
-        IEnumerable<Product> products;
+        public IEnumerable<Product> Products { get; }
 
         public SuplierProducts()
         {

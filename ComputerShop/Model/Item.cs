@@ -1,14 +1,25 @@
-﻿namespace ComputerShop.Model
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace ComputerShop.Model
 {
-    struct Item
+    class Item
     {
-        public int productID;
-        public int amount;
+        [Key]
+        public int ID { get; set; }
+
+        public int ProductID { get; set; }
+
+        public Product Product { get; set; }
+
+        public int Amount { get; set; }
 
         public Item(int productID, int amount)
         {
-            this.productID = productID;
-            this.amount = amount;
+            ProductID = productID;
+            Amount = amount;
         }
+
+        public Item() { }
     }
 }

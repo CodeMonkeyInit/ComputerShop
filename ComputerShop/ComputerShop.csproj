@@ -56,6 +56,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controller\OrdersController.cs" />
+    <Compile Include="Controller\ProductsController.cs" />
+    <Compile Include="Controller\ShopIncomeController.cs" />
     <Compile Include="Migrations\201703121813110_initialDatabase.cs" />
     <Compile Include="Migrations\201703121813110_initialDatabase.Designer.cs">
       <DependentUpon>201703121813110_initialDatabase.cs</DependentUpon>
@@ -67,6 +70,10 @@
     <Compile Include="Migrations\201703121919573_shopIncome.cs" />
     <Compile Include="Migrations\201703121919573_shopIncome.Designer.cs">
       <DependentUpon>201703121919573_shopIncome.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703130920046_order-modified.cs" />
+    <Compile Include="Migrations\201703130920046_order-modified.Designer.cs">
+      <DependentUpon>201703130920046_order-modified.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\ComputerShopDbContext.cs" />
@@ -82,9 +89,7 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Controller\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201703121813110_initialDatabase.resx">
       <DependentUpon>201703121813110_initialDatabase.cs</DependentUpon>
@@ -94,6 +99,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201703121919573_shopIncome.resx">
       <DependentUpon>201703121919573_shopIncome.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703130920046_order-modified.resx">
+      <DependentUpon>201703130920046_order-modified.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

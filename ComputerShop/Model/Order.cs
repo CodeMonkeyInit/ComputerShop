@@ -7,22 +7,8 @@ namespace ComputerShop.Model
 {
     class Order
     {
-        protected string productsJSON;
-
         public int ID { get; set; }
-
-        public string ProductsJSON
-        {
-            get
-            {
-                return JsonConvert.SerializeObject(Products);
-            }
-            set
-            {
-                productsJSON = value;
-                Products = JsonConvert.DeserializeObject<List<Item>>(productsJSON);
-            }
-        }
+        
         public List<Item> Products { get; set; }
         
         public double Total { get; set; }
