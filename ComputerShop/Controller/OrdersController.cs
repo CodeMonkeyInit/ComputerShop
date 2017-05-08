@@ -11,6 +11,8 @@ namespace ComputerShop.Controller
     {
         private IEnumerable<Order> orders;
 
+        public readonly string LinqIncludeWithOrder = "Products.Product";
+
         public IEnumerable<Order> Orders
         {
             get
@@ -19,7 +21,7 @@ namespace ComputerShop.Controller
                 {
                     using (var dbContext = new ComputerShopDbContext())
                     {
-                        orders = dbContext.Orders.ToList();
+                        orders = dbContext.Orders.Include(LinqIncludeWithOrder).ToList();
                     }
                 }
                 return orders;
@@ -33,12 +35,16 @@ namespace ComputerShop.Controller
             foreach (Order order in Orders)
             {
                 Item orderItem = order.Products.First(item => item.ProductID == product.ID);
-
-                
             }
-            
             return productSold;
         }
 
+        public void AddNewOrder(Order order)
+        {
+            using (var dbContext = new ComputerShopDbContext())
+            {
+                dbContext.Orders.Add(order);
+            }
+        }
     }
 }

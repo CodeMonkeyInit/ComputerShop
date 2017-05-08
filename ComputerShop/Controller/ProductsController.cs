@@ -12,13 +12,7 @@ namespace ComputerShop.Controller
     {
         private IEnumerable<Product> productList;
 
-        private IEnumerable<Product> SuplierStock
-        {
-            get
-            {
-                return new SuplierProducts().Products;
-            }
-        }
+        private IEnumerable<Product> SuplierStock => new SuplierProducts().Products;
 
         public IEnumerable<Product> GetProductList()
         {
@@ -38,6 +32,7 @@ namespace ComputerShop.Controller
             using (var dbContext = new ComputerShopDbContext())
             {
                 Product updatingProduct = dbContext.Stock.FirstOrDefault(p => p == product);
+
                 updatingProduct.StockAmount += amount;
                 dbContext.SaveChanges();
             }

@@ -58,7 +58,10 @@
   <ItemGroup>
     <Compile Include="Controller\OrdersController.cs" />
     <Compile Include="Controller\ProductsController.cs" />
+    <Compile Include="Controller\SaleRecieptController.cs" />
     <Compile Include="Controller\ShopIncomeController.cs" />
+    <Compile Include="Interfaces\IFormable.cs" />
+    <Compile Include="Interfaces\IUserInterface.cs" />
     <Compile Include="Migrations\201703121813110_initialDatabase.cs" />
     <Compile Include="Migrations\201703121813110_initialDatabase.Designer.cs">
       <DependentUpon>201703121813110_initialDatabase.cs</DependentUpon>
@@ -75,6 +78,10 @@
     <Compile Include="Migrations\201703130920046_order-modified.Designer.cs">
       <DependentUpon>201703130920046_order-modified.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201703161221335_orderCanNowBeFinished.cs" />
+    <Compile Include="Migrations\201703161221335_orderCanNowBeFinished.Designer.cs">
+      <DependentUpon>201703161221335_orderCanNowBeFinished.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\ComputerShopDbContext.cs" />
     <Compile Include="Model\Finance.cs" />
@@ -84,9 +91,11 @@
     <Compile Include="Model\SuplierProducts.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="View\CashierUserInterface.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="ClassDiagram1.cd" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup />
@@ -102,6 +111,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201703130920046_order-modified.resx">
       <DependentUpon>201703130920046_order-modified.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703161221335_orderCanNowBeFinished.resx">
+      <DependentUpon>201703161221335_orderCanNowBeFinished.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

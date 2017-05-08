@@ -9,11 +9,11 @@ namespace ComputerShop.Controller
 {
     class ShopIncomeController
     {
-        public void AddMoney(int amount)
+        public void AddMoney(double amount)
         {
             using (var dbContext = new ComputerShopDbContext())
             {
-                Finance shopIncome = dbContext.Financies.First(finance => finance.ID == 1);
+                Finance shopIncome = dbContext.Financies.First(finance => finance.Name == "Shop Income");
 
                 shopIncome.Amount += amount;
                 dbContext.SaveChanges();
