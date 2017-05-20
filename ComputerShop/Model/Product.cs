@@ -2,7 +2,7 @@
 
 namespace ComputerShop.Model
 {
-    class Product
+    public class Product
     {
         [Key]
         public int ID { get; set; }

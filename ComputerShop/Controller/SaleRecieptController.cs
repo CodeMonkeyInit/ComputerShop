@@ -5,7 +5,7 @@ using System.Text;
 
 namespace ComputerShop.Controller
 {
-    class SaleRecieptController : IFormable
+    public class SaleRecieptController : IFormable
     {
         public string Form(Order order)
         {

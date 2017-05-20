@@ -2,7 +2,7 @@
 
 namespace ComputerShop.Model
 {
-    public class Finance : IFinance
+    public class Finance
     {
         [Key]
         public int ID { get; set; }

@@ -85,6 +85,8 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\ComputerShopDbContext.cs" />
     <Compile Include="Model\Finance.cs" />
+    <Compile Include="Model\Interfaces\IComputerShopDbContext.cs" />
+    <Compile Include="Model\Interfaces\ISuplierProducts.cs" />
     <Compile Include="Model\Order.cs" />
     <Compile Include="Model\Item.cs" />
     <Compile Include="Model\Product.cs" />

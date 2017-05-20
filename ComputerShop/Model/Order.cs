@@ -9,7 +9,7 @@ namespace ComputerShop.Model
 
         public int ID { get; set; }
         
-        public List<Item> Products { get; set; }
+        public virtual List<Item> Products { get; set; }
         
         public double Total
         {

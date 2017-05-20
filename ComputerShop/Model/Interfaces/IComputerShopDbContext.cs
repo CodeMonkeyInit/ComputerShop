@@ -8,6 +8,6 @@ namespace ComputerShop.Model
         DbSet<Order> Orders { get; set; }
         DbSet<Product> Stock { get; set; }
 
-        void SaveChanges();
+        int SaveChanges();
     }
 }

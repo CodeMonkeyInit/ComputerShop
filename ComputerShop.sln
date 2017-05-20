@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.26403.7
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ComputerShop", "ComputerShop\ComputerShop.csproj", "{EB7287A4-15A7-41B7-A71E-BA7D81F79BBF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ComputerShopTests", "ComputerShopTests\ComputerShopTests.csproj", "{8A24AA1D-BDEA-47DF-BD9B-C38A48746703}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{EB7287A4-15A7-41B7-A71E-BA7D81F79BBF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EB7287A4-15A7-41B7-A71E-BA7D81F79BBF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EB7287A4-15A7-41B7-A71E-BA7D81F79BBF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8A24AA1D-BDEA-47DF-BD9B-C38A48746703}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8A24AA1D-BDEA-47DF-BD9B-C38A48746703}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8A24AA1D-BDEA-47DF-BD9B-C38A48746703}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8A24AA1D-BDEA-47DF-BD9B-C38A48746703}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -3,14 +3,14 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ComputerShop.Model
 {
-    public class Item : IItem
+    public class Item
     {
         [Key]
         public int ID { get; set; }
 
         public int ProductID { get; set; }
 
-        public Product Product { get; set; }
+        public virtual Product Product { get; set; }
 
         public int Amount { get; set; }
 
