@@ -7,44 +7,33 @@ using System.Threading.Tasks;
 
 namespace ComputerShop.Controller
 {
-    class OrdersController
+    public class OrdersController
     {
-        private IEnumerable<Order> orders;
+        private readonly IComputerShopDbContext _dbContext;
 
         public readonly string LinqIncludeWithOrder = "Products.Product";
 
-        public IEnumerable<Order> Orders
-        {
-            get
-            {
-                if (orders == null)
-                {
-                    using (var dbContext = new ComputerShopDbContext())
-                    {
-                        orders = dbContext.Orders.Include(LinqIncludeWithOrder).ToList();
-                    }
-                }
-                return orders;
-            }
-        }
+        public IEnumerable<Order> Orders => _dbContext.Orders.ToList();
 
         public int GetProductAmountSold(Product product)
         {
-            int productSold = 0;
-
-            foreach (Order order in Orders)
-            {
-                Item orderItem = order.Products.First(item => item.ProductID == product.ID);
-            }
-            return productSold;
+            //TODO check
+            return Orders
+                .Where(o => o.Products.Any(i => i.Product == product))
+                .Select(o => o.Products.First())
+                .Sum(i => i.Amount);
         }
 
         public void AddNewOrder(Order order)
         {
-            using (var dbContext = new ComputerShopDbContext())
-            {
-                dbContext.Orders.Add(order);
-            }
+            _dbContext.Orders.Add(order);
+
+            _dbContext.SaveChanges();
+        }
+
+        public OrdersController(IComputerShopDbContext dbContext)
+        {
+            _dbContext = dbContext;
         }
     }
 }

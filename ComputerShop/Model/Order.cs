@@ -3,9 +3,9 @@ using System.Collections.Generic;
 
 namespace ComputerShop.Model
 {
-    class Order
+    public class Order
     {
-        private double total;
+        private double _total;
 
         public int ID { get; set; }
         
@@ -15,19 +15,16 @@ namespace ComputerShop.Model
         {
             get
             {
-                if (total == .0)
+                if (_total == .0)
                 {
                     foreach (Item item in Products)
                     {
-                        total += item.Product.Price * item.Amount;
+                        _total += item.Product.Price * item.Amount;
                     }
                 }
-                return total;
+                return _total;
             }
-            set
-            {
-                total = value;
-            }
+            set => _total = value;
         }
 
         public DateTime Time { get; set; }

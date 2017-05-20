@@ -40,9 +40,9 @@ namespace ComputerShop
         {
             //Test();
 
-            IUserInterface UI = new CashierUserInterface();
+            IUserInterface ui = new CashierUserInterface();
 
-            UI.Render();
+            ui.Render();
         }
     }
 }

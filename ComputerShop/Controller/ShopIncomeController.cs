@@ -7,17 +7,23 @@ using System.Threading.Tasks;
 
 namespace ComputerShop.Controller
 {
-    class ShopIncomeController
+    public class ShopIncomeController
     {
+        private const string ShopIncomeName = "Shop Income";
+
+        private readonly IComputerShopDbContext _dbContext;
+
+        public ShopIncomeController(IComputerShopDbContext dbContext)
+        {
+            _dbContext = dbContext;
+        }
+
         public void AddMoney(double amount)
         {
-            using (var dbContext = new ComputerShopDbContext())
-            {
-                Finance shopIncome = dbContext.Financies.First(finance => finance.Name == "Shop Income");
+            Finance shopIncome = _dbContext.Financies.First(finance => finance.Name == ShopIncomeName);
 
-                shopIncome.Amount += amount;
-                dbContext.SaveChanges();
-            }
+            shopIncome.Amount += amount;
+            _dbContext.SaveChanges();
         }
     }
 }

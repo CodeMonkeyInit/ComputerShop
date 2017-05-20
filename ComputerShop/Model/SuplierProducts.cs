@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace ComputerShop.Model
 {
-    class SuplierProducts
+    public class SuplierProducts : ISuplierProducts
     {
         public IEnumerable<Product> Products { get; }
 
-        public SuplierProducts()
+        public SuplierProducts(IEnumerable<Product> products)
         {
-
+            Products = products;
         }
     }
 }

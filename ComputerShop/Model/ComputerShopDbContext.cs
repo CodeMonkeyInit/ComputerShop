@@ -2,7 +2,7 @@
 
 namespace ComputerShop.Model
 {
-    class ComputerShopDbContext: DbContext
+    public class ComputerShopDbContext : DbContext, IComputerShopDbContext
     {
         public DbSet<Order> Orders { get; set; }
         public DbSet<Product> Stock { get; set; }

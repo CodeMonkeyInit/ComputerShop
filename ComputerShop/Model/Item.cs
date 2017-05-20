@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ComputerShop.Model
 {
-    class Item
+    public class Item : IItem
     {
         [Key]
         public int ID { get; set; }

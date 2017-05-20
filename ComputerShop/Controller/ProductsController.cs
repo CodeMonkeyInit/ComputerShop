@@ -8,32 +8,33 @@ using System.Threading.Tasks;
 
 namespace ComputerShop.Controller
 {
-    class ProductsController
+    public class ProductsController
     {
-        private IEnumerable<Product> productList;
+        private IEnumerable<Product> _productList;
 
-        private IEnumerable<Product> SuplierStock => new SuplierProducts().Products;
-
-        public IEnumerable<Product> GetProductList()
+        private readonly IComputerShopDbContext _dbContext;
+        
+        public IEnumerable<Product> SuplierStock { get; }
+        
+        public ProductsController(IEnumerable<Product> suplierStock, IComputerShopDbContext dbContext)
         {
-            if (productList == null)
-            {
-                using (var dbContext = new ComputerShopDbContext())
-                {
-                    productList = dbContext.Stock.ToList();
-                }
-            }
-
-            return productList;
+            SuplierStock = suplierStock;
+            _dbContext = dbContext;
         }
 
+        public IEnumerable<Product> ProductsList => _dbContext.Stock.ToList();
+                
         public void ModifyProductCount(Product product, int amount)
         {
             using (var dbContext = new ComputerShopDbContext())
             {
                 Product updatingProduct = dbContext.Stock.FirstOrDefault(p => p == product);
 
-                updatingProduct.StockAmount += amount;
+                if (updatingProduct != null)
+                {
+                    updatingProduct.StockAmount += amount;
+                }
+
                 dbContext.SaveChanges();
             }
         }
