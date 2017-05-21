@@ -58,7 +58,7 @@
   <ItemGroup>
     <Compile Include="Controller\OrdersController.cs" />
     <Compile Include="Controller\ProductsController.cs" />
-    <Compile Include="Controller\SaleRecieptController.cs" />
+    <Compile Include="Controller\SaleReciept.cs" />
     <Compile Include="Controller\ShopIncomeController.cs" />
     <Compile Include="Interfaces\IFormable.cs" />
     <Compile Include="Interfaces\IUserInterface.cs" />

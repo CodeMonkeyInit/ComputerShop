@@ -1,12 +1,12 @@
 ﻿using System.Data.Entity;
 
-namespace ComputerShop.Model
+namespace ComputerShop.Model.Interfaces
 {
     public interface IComputerShopDbContext
     {
-        DbSet<Finance> Financies { get; set; }
-        DbSet<Order> Orders { get; set; }
-        DbSet<Product> Stock { get; set; }
+        DbSet<Finance> Financies { get; }
+        DbSet<Order> Orders { get;  }
+        DbSet<Product> Products { get; }
 
         int SaveChanges();
     }

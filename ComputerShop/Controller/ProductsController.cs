@@ -1,6 +1,7 @@
 ﻿using ComputerShop.Model;
 using System.Collections.Generic;
 using System.Linq;
+using ComputerShop.Model.Interfaces;
 
 namespace ComputerShop.Controller
 {
@@ -9,6 +10,8 @@ namespace ComputerShop.Controller
         private IEnumerable<Product> _productList;
 
         private readonly IComputerShopDbContext _dbContext;
+
+        public const int ProductsOrderedSuccessfully = 1;
         
         public IEnumerable<Product> SuplierStock { get; }
         
@@ -18,29 +21,29 @@ namespace ComputerShop.Controller
             _dbContext = dbContext;
         }
 
-        public IEnumerable<Product> ProductsList => _dbContext.Stock.ToList();
+        public IEnumerable<Product> ProductsList => _dbContext.Products.ToList();
                 
         public void ModifyProductCount(Product product, int amount)
         {
-            using (var dbContext = new ComputerShopDbContext())
-            {
-                Product updatingProduct = dbContext.Stock.FirstOrDefault(p => p == product);
+                Product updatingProduct = _dbContext.Products.FirstOrDefault(p => p == product);
 
                 if (updatingProduct != null)
                 {
                     updatingProduct.StockAmount += amount;
                 }
 
-                dbContext.SaveChanges();
-            }
+
+                _dbContext.SaveChanges();
         }
 
-        public void OrderNewProducts(IEnumerable<Product> products)
+        public int OrderNewProducts(IEnumerable<Product> products)
         {
             foreach (Product product in products)
             {
                 //do something
             }
+
+            return ProductsOrderedSuccessfully;
         }
     }
 }

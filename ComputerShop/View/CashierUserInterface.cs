@@ -4,13 +4,12 @@ using ComputerShop.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using ComputerShop.Model.Interfaces;
 
 namespace ComputerShop.View
 {
     class CashierUserInterface : IUserInterface
     {
-        private ShopIncomeController incomeController;
-
         protected void UserInputHandler(ConsoleKey key)
         {
             switch (key)
@@ -28,14 +27,15 @@ namespace ComputerShop.View
         protected void AddMoney()
         {
             bool moneyRecieved = false;
-            string moneyAmountUserInput = String.Empty;
+            string moneyAmountUserInput;
             double moneyAmount = double.MinValue;
             while (!moneyRecieved)
             {
-                Console.WriteLine("Ввести кол-во денег которые вы получили от покупателя(или введите ноль чтобы выйти): ");
+                Console.WriteLine(
+                    "Ввести кол-во денег которые вы получили от покупателя(или введите ноль чтобы выйти): ");
                 moneyAmountUserInput = Console.ReadLine();
                 moneyRecieved = double.TryParse(moneyAmountUserInput, out moneyAmount);
-                
+
                 if (moneyRecieved)
                 {
                     if (moneyAmount < 0)
@@ -52,20 +52,25 @@ namespace ComputerShop.View
 
             if (moneyAmount > 0)
             {
-                incomeController.AddMoney(moneyAmount);
-                Console.WriteLine("Операция заверщена успешно. Нажмите любую кнопку для продолжения");
-                Console.ReadKey(false);
+                using (var computerShopDbContext = new ComputerShopDbContext())
+                {
+                    ShopIncomeController incomeController = new ShopIncomeController(computerShopDbContext);
+
+                    incomeController.AddMoney(moneyAmount);
+                    Console.WriteLine("Операция заверщена успешно. Нажмите любую кнопку для продолжения");
+                    Console.ReadKey(false);
+                }
             }
         }
 
-        protected Order ChooseOrder()
+        protected Order ChooseOrder(IComputerShopDbContext computerShopDbContext)
         {
-            OrdersController ordersController = new OrdersController();
+            OrdersController ordersController = new OrdersController(computerShopDbContext);
             IEnumerable<Order> orders = ordersController.Orders;
             Order choosenOrder = null;
             int chosenOrderId;
 
-            foreach(Order order in orders.Where(o => o.IsFinished == false))
+            foreach (Order order in orders.Where(o => o.IsFinished == false))
             {
                 Console.WriteLine(order);
             }
@@ -80,8 +85,16 @@ namespace ComputerShop.View
                 bool userInputCorrect = false;
                 while (!userInputCorrect)
                 {
+                    string userInput;
                     Console.WriteLine("Введите id нужного заказа");
-                    chosenOrderId = Convert.ToInt32(Console.ReadLine());
+                    
+                    userInput = Console.ReadLine();
+
+                    if (!int.TryParse(userInput, out chosenOrderId))
+                    {
+                        continue;
+                    }
+
                     choosenOrder = orders.FirstOrDefault(o => o.ID == chosenOrderId);
 
                     if (choosenOrder != null)
@@ -93,7 +106,6 @@ namespace ComputerShop.View
                         Console.WriteLine("ID введен неверно! Повторите попытку");
                         Console.ReadKey(true);
                     }
-                    
                 }
             }
             return choosenOrder;
@@ -101,14 +113,17 @@ namespace ComputerShop.View
 
         protected void PrintReciept()
         {
-            Order chosenOrder = ChooseOrder();
-            SaleRecieptController saleRecieptController;
-
-            if (chosenOrder != null)
+            using (var computerShopDbContext = new ComputerShopDbContext())
             {
-                saleRecieptController = new SaleRecieptController();
-                Console.WriteLine(saleRecieptController.Form(chosenOrder));
-                Console.ReadKey(true);
+                Order chosenOrder = ChooseOrder(computerShopDbContext);
+                SaleReciept saleReciept;
+
+                if (chosenOrder != null)
+                {
+                    saleReciept = new SaleReciept();
+                    Console.WriteLine(saleReciept.Form(chosenOrder));
+                    Console.ReadKey(true);
+                }
             }
         }
 
@@ -126,14 +141,7 @@ namespace ComputerShop.View
 
                 userInput = Console.ReadKey(true);
                 UserInputHandler(userInput.Key);
-
             } while (userInput.Key != ConsoleKey.Escape);
-
-        }
-
-        public CashierUserInterface()
-        {
-            incomeController = new ShopIncomeController();
         }
     }
 }

@@ -18,19 +18,18 @@ namespace ComputerShop
             {
                 var orders = context.Orders;
                 var newOrder = new Order();
-                newOrder.Products.Add(new Item(context.Stock.FirstOrDefault(product => product.ID == 2).ID, 2));
-                newOrder.Products.Add(new Item(context.Stock.FirstOrDefault(product => product.ID == 1).ID, 2));
-                newOrder.Products.Add(new Item(context.Stock.FirstOrDefault(product => product.ID == 3).ID, 2));
-                newOrder.Products.Add(new Item(context.Stock.FirstOrDefault(product => product.ID == 4).ID, 2));
+                newOrder.Products.Add(new Item(context.Products.FirstOrDefault(product => product.ID == 2).ID, 2));
+                newOrder.Products.Add(new Item(context.Products.FirstOrDefault(product => product.ID == 1).ID, 2));
+                newOrder.Products.Add(new Item(context.Products.FirstOrDefault(product => product.ID == 3).ID, 2));
+                newOrder.Products.Add(new Item(context.Products.FirstOrDefault(product => product.ID == 4).ID, 2));
 
                 orders.Add(newOrder);
 
                 context.SaveChanges();
-
-
+                
                 foreach (var order in context.Orders.Include("Products.Product").ToList())
                 {
-                    Console.WriteLine(new SaleRecieptController().Form(order));
+                    Console.WriteLine(new SaleReciept().Form(order));
                 }
             }
             Console.ReadKey();
